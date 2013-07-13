@@ -7,4 +7,7 @@
     <string name="stores">TIENDAS</string>
     <string name="transactions">TRANSACCIONES</string>
     <string name="synchronize">SINCRONIZAR</string>
+    <string name="title_activity_products">Productos</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
