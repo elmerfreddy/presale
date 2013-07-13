@@ -15,7 +15,7 @@ public class Product {
 		this.price = (float) (Math.random()*200 + 50);
 	}
 	
-	public Product find(int product_id) {
+	public static Product find(int product_id) {
 		Product product = new Product();
 		product.id = product_id;
 		product.name = "Product " + product_id;
@@ -26,7 +26,7 @@ public class Product {
 	/*
 	 * Retorna los objetos de la base de datos como objectos de la clase Product
 	 */
-	public Product[] all() {
+	public static Product[] all() {
 		Product[] products = new Product[20];
 		for (int i = 0; i < 20; i++) {
 			products[i] = new Product("Product " + i);
