@@ -26,6 +26,10 @@
             android:name="com.herokuapp.presale.ProductsActivity"
             android:label="@string/title_activity_products" >
         </activity>
+        <activity
+            android:name="com.herokuapp.presale.StoresActivity"
+            android:label="@string/title_activity_stores" >
+        </activity>
     </application>
 
 </manifest>

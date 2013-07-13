@@ -7,16 +7,20 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Button btnProducts = (Button) findViewById(R.id.btnProducts);
-		btnProducts.setOnClickListener(this);
+		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions, R.id.btnSynchronize};
+		
+		for (int i = 0; i < buttons.length; i++) {
+			((Button) findViewById(buttons[i])).setOnClickListener(this);
+		}
 	}
 
 	@Override
@@ -30,15 +34,19 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		Intent intent = null;
 		switch(v.getId()) {
+		
 		case R.id.btnProducts:
+			Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, ProductsActivity.class);
 			startActivity(intent);
 			break;
-			/*
+			
 		case R.id.btnStores:
+			Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, StoresActivity.class);
 			startActivity(intent);
 			break;
+		/*
 		case R.id.btnTransactions:
 			intent = new Intent(this, TransactionsActivity.class);
 			startActivity(intent);
