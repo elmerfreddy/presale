@@ -18,6 +18,8 @@ public class ProductsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_products);
 		
+		Product.context = ProductsActivity.this;
+		//Product.testData();
 		products = Product.all();
 		ProductAdapter adapter = new ProductAdapter(this);
 		ListView lstProducts = (ListView) findViewById(R.id.lstProducts);
