@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -27,21 +26,23 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		Intent intent = null;
 		switch(v.getId()) {
-		case: R.id.btnProducts:
+		case R.id.btnProducts:
 			intent = new Intent(this, ProductsActivity.class);
 			startActivity(intent);
 			break;
-		case: R.id.btnStores:
+			/*
+		case R.id.btnStores:
 			intent = new Intent(this, StoresActivity.class);
 			startActivity(intent);
 			break;
-		case: R.id.btnTransactions:
+		case R.id.btnTransactions:
 			intent = new Intent(this, TransactionsActivity.class);
 			startActivity(intent);
 			break;
-		case: R.id.btnSynchronize:
+		case R.id.btnSynchronize:
 			Toast.makeText(this, "Implementar con webservice", Toast.LENGTH_SHORT).show();
 			break;
+			*/
 		}
 	}
 
