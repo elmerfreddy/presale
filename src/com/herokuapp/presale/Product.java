@@ -1,10 +1,18 @@
 package com.herokuapp.presale;
 
+import java.util.ArrayList;
+
+import android.content.Context;
+
 
 public class Product {
+	public static Context context;
 	public int id = 0;
+	public int remote_id = 0;
 	public String name = null;
 	public Float price = (float) 0.0;
+	public String updated_at = null;
+	public String created_at = null;
 	
 	public Product() {
 	}
@@ -27,10 +35,26 @@ public class Product {
 	 * Retorna los objetos de la base de datos como objectos de la clase Product
 	 */
 	public static Product[] all() {
-		Product[] products = new Product[20];
-		for (int i = 0; i < 20; i++) {
-			products[i] = new Product("Product " + i);
+		Products products = new Products(context);
+		ArrayList<Product> alProducts =  new ArrayList<Product>();
+		try {
+			products.open();
+			alProducts = products.all();
+			products.close();
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
-		return products;
+		return alProducts.toArray(new Product[alProducts.size()]);
+	}
+	
+	public static void testData() {
+		Products products = new Products(context);
+		try {
+			products.open();
+			products.insertTestData();
+			products.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
