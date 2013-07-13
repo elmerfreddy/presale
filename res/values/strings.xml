@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">presale</string>
+    <string name="app_name">Preventas</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="produts">PRODUCTOS</string>
+    <string name="stores">TIENDAS</string>
+    <string name="transactions">TRANSACCIONES</string>
+    <string name="synchronize">SINCRONIZAR</string>
 </resources>
