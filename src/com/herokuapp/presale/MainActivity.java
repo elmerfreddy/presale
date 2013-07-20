@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
-	
+	public static final String api_host = "http://10.0.2.2:3000";
+	public static String authToken = null;
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

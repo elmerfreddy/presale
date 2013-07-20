@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -16,11 +17,6 @@
         <activity
             android:name="com.herokuapp.presale.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.herokuapp.presale.ProductsActivity"
@@ -29,6 +25,15 @@
         <activity
             android:name="com.herokuapp.presale.StoresActivity"
             android:label="@string/title_activity_stores" >
+        </activity>
+        <activity
+            android:name="com.herokuapp.presale.LoginActivity"
+            android:label="@string/title_activity_login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
