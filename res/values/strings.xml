@@ -9,5 +9,10 @@
     <string name="synchronize">SINCRONIZAR</string>
     <string name="title_activity_products">Productos</string>
     <string name="title_activity_stores">Tiendas</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
 
 </resources>
