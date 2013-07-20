@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -16,6 +15,7 @@ import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -105,7 +105,10 @@ public class LoginActivity extends Activity {
 	    				int id = result.getInt("id");
 						String email = result.getString("email");
 			    		String auth_token = result.getString("auth_token");
-			    		Toast.makeText(LoginActivity.this, auth_token, Toast.LENGTH_LONG).show();
+			    		MainActivity.authToken = auth_token;
+			    		
+			    		Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+			    		startActivity(intent);
 	    			}
 				} catch (JSONException e) {
 					e.printStackTrace();
