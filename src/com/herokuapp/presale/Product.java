@@ -3,6 +3,7 @@ package com.herokuapp.presale;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.widget.Toast;
 
 
 public class Product {
@@ -35,15 +36,16 @@ public class Product {
 	 * Retorna los objetos de la base de datos como objectos de la clase Product
 	 */
 	public static Product[] all() {
-		Products products = new Products(context);
 		ArrayList<Product> alProducts =  new ArrayList<Product>();
-		try {
-			products.open();
-			alProducts = products.all();
-			products.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		
+		RequestProducts requestProducts = new RequestProducts();
+		requestProducts.execute(MainActivity.api_host + "/products?auth_token=" + MainActivity.authToken);
+		
+		//alProducts = products;
+		
+		Toast.makeText(context, "" + alProducts.size(), Toast.LENGTH_LONG).show();
+		//alProducts = MainActivity.productsList;
+
 		return alProducts.toArray(new Product[alProducts.size()]);
 	}
 	
@@ -57,4 +59,5 @@ public class Product {
 			e.printStackTrace();
 		}
 	}
+	
 }
