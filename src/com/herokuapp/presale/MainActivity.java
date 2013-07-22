@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 	public static final String api_host = "http://10.0.2.2:3000";
@@ -38,13 +37,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		switch(v.getId()) {
 		
 		case R.id.btnProducts:
-			Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, ProductsActivity.class);
 			startActivity(intent);
 			break;
 			
 		case R.id.btnStores:
-			Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, StoresActivity.class);
 			startActivity(intent);
 			break;

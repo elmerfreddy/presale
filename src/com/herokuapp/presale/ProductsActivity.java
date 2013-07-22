@@ -1,5 +1,7 @@
 package com.herokuapp.presale;
 
+import java.util.concurrent.ExecutionException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -20,7 +22,13 @@ public class ProductsActivity extends Activity {
 		
 		Product.context = ProductsActivity.this;
 		//Product.testData();
-		products = Product.all();
+		try {
+			products = Product.all();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		ProductAdapter adapter = new ProductAdapter(this);
 		ListView lstProducts = (ListView) findViewById(R.id.lstProducts);
 		lstProducts.setAdapter(adapter);
