@@ -13,7 +13,9 @@ public class Transaction {
 	public String store_name = null;
 	public int products_count = 0;
 	public String user_name = null;
-	
+    public float total = (float) 0.0;
+    public Detail[] details = null;
+
 	public Transaction() {
 	}
 
@@ -30,19 +32,33 @@ public class Transaction {
 		}
 		return transactions.toArray(new Transaction[transactions.size()]);
 	}
-	
+
 	private static ArrayList<Transaction> parseTransactions(JSONArray result) {
 		ArrayList<Transaction> results = new ArrayList<Transaction>();
 		for (int i = 0; i < result.length(); i++) {
 			JSONObject o;
 			Transaction s = new Transaction();
+			JSONArray jsonArray;
 			try {
 				o = result.getJSONObject(i);
 				s.id = o.getInt("id");
 				s.store_name = o.getString("store_name");
 				s.products_count = o.getInt("products_count");
 				s.user_name = o.getString("user_name");
-				
+				s.total = (float) o.getDouble("total");
+				s.details = new Detail[s.products_count];
+				jsonArray = o.getJSONArray("details");
+				for (int j = 0; j < jsonArray.length(); j++) {
+					Detail d = new Detail();
+					o = jsonArray.getJSONObject(j);
+					d.id = o.getInt("id");
+					d.quantity = o.getInt("quantity");
+					d.product_name = o.getString("product_name");
+					d.price = (float) o.getDouble("price");
+					d.total = (float) o.getDouble("total");
+					s.details[j] = d;
+				}
+
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
