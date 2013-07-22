@@ -1,6 +1,7 @@
 package com.herokuapp.presale;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -15,6 +16,15 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 class RequestProducts extends AsyncTask<String, String, JSONArray> {
+	private AsyncTaskListener asyncTaskListener;
+	
+	public interface AsyncTaskListener { 
+		void onFinish(ArrayList<Product> products);
+	}
+	
+	public RequestProducts(AsyncTaskListener asyncTaskListener) {
+		this.asyncTaskListener = asyncTaskListener;
+	}
 	
 	@Override
 	protected JSONArray doInBackground(String... params) {
@@ -54,6 +64,7 @@ class RequestProducts extends AsyncTask<String, String, JSONArray> {
     	if(result != null) {
     		try {
     			Log.i("RESULT", "" + result.length());
+    			ArrayList<Product> products = new ArrayList<Product>();
     			
     			for (int i = 0; i < result.length(); i++) {
 					JSONObject o = result.getJSONObject(i);
@@ -61,8 +72,10 @@ class RequestProducts extends AsyncTask<String, String, JSONArray> {
 					p.id = o.getInt("id");
 					p.price = (float) o.getDouble("price");
 					p.name = o.getString("name");
+					products.add(p);
 				}
     			Log.i("RESULT", ""+ result.toString() + " products");
+    			asyncTaskListener.onFinish(products);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
