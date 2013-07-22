@@ -23,7 +23,7 @@ public class StoresActivity extends Activity {
 		stores = Store.all(this);
 		
 		StoreAdapter adapter = new StoreAdapter(this);
-		ListView lstStores = (ListView) findViewById(R.id.lstStores);
+		ListView lstStores = (ListView) findViewById(R.id.lstTransactions);
 		lstStores.setAdapter(adapter);
 	}
 

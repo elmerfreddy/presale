@@ -47,11 +47,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			intent = new Intent(this, StoresActivity.class);
 			startActivity(intent);
 			break;
-		/*
 		case R.id.btnTransactions:
 			intent = new Intent(this, TransactionsActivity.class);
 			startActivity(intent);
 			break;
+		/*
 		case R.id.btnSynchronize:
 			Toast.makeText(this, "Implementar con webservice", Toast.LENGTH_SHORT).show();
 			break;
