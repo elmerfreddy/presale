@@ -2,6 +2,10 @@ package com.herokuapp.presale;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
 
 public class Store {
@@ -33,9 +37,11 @@ public class Store {
 		context =  c;
 		Stores s = new Stores(context);
 		ArrayList<Store> stores =  new ArrayList<Store>();
+		RequestProducts requestStores = new RequestProducts();
+		requestStores.execute(MainActivity.api_host + "/stores?auth_token=" + MainActivity.authToken);
 		try {
 			s.open();
-			stores = s.all();
+			stores = parseStores(requestStores.get());
 			s.close();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -52,5 +58,26 @@ public class Store {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private static ArrayList<Store> parseStores(JSONArray stores) {
+		ArrayList<Store> stors = new ArrayList<Store>();
+		for (int i = 0; i < stores.length(); i++) {
+			JSONObject o;
+			Store s = new Store();
+			try {
+				o = stores.getJSONObject(i);
+				s.id = o.getInt("id");
+				s.name = o.getString("name");
+				s.owner = o.getString("owner");
+				s.address = o.getString("address");
+				s.latitude = o.getDouble("latitude");
+				s.longitude = o.getDouble("longitude");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			stors.add(s);
+		}
+		return stors;
 	}
 }
