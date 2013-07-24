@@ -1,14 +1,17 @@
 package com.herokuapp.presale;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class StoresActivity extends Activity {
 	private Store[] stores = null;
@@ -25,6 +28,24 @@ public class StoresActivity extends Activity {
 		StoreAdapter adapter = new StoreAdapter(this);
 		ListView lstStores = (ListView) findViewById(R.id.lstTransactions);
 		lstStores.setAdapter(adapter);
+		
+
+		lstStores.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
+				Store store = (Store) a.getAdapter().getItem(position);
+				
+				Bundle bundle = new Bundle();
+				bundle.putInt("STORE_ID", store.id);
+				bundle.putString("STORE_NAME", store.name);
+				
+				Intent intent = new Intent(StoresActivity.this, NewTransactionActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
