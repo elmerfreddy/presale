@@ -18,6 +18,20 @@ public class Transaction {
 
 	public Transaction() {
 	}
+	
+	public static Transaction find(int _id) {
+		Transaction transaction =  null;
+		RequestProduct requestTransaction = new RequestProduct();
+		requestTransaction.execute(MainActivity.api_host + "/transactions/" + _id + "?auth_token=" + MainActivity.authToken);
+		try {
+			transaction = parseTransaction(requestTransaction.get());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		return transaction;
+	}
 
 	public static Transaction[] all() {
 		ArrayList<Transaction> transactions =  new ArrayList<Transaction>();
@@ -31,6 +45,36 @@ public class Transaction {
 			e.printStackTrace();
 		}
 		return transactions.toArray(new Transaction[transactions.size()]);
+	}
+	
+	private static Transaction parseTransaction(JSONObject result) {
+		JSONObject o;
+		Transaction s = new Transaction();
+		JSONArray jsonArray;
+		try {
+			o = result;
+			s.id = o.getInt("id");
+			s.store_name = o.getString("store_name");
+			s.products_count = o.getInt("products_count");
+			s.user_name = o.getString("user_name");
+			s.total = (float) o.getDouble("total");
+			s.details = new Detail[s.products_count];
+			jsonArray = o.getJSONArray("details");
+			for (int j = 0; j < jsonArray.length(); j++) {
+				Detail d = new Detail();
+				o = jsonArray.getJSONObject(j);
+				d.id = o.getInt("id");
+				d.quantity = o.getInt("quantity");
+				d.product_name = o.getString("product_name");
+				d.price = (float) o.getDouble("price");
+				d.total = (float) o.getDouble("total");
+				s.details[j] = d;
+			}
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return s;
 	}
 
 	private static ArrayList<Transaction> parseTransactions(JSONArray result) {

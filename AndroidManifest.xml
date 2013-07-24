@@ -40,6 +40,10 @@
             android:name="com.herokuapp.presale.TransactionsActivity"
             android:label="@string/title_activity_transactions" >
         </activity>
+        <activity
+            android:name="com.herokuapp.presale.ShowTransactionActivity"
+            android:label="@string/title_activity_show_transaction" >
+        </activity>
     </application>
 
 </manifest>
