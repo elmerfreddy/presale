@@ -14,5 +14,7 @@
     <string name="login">Iniciar Sesión</string>
     <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
+    <string name="title_activity_transactions">TransactionsActivity</string>
+    <string name="title_activity_show_transaction">Transaction Detail</string>
 
 </resources>
