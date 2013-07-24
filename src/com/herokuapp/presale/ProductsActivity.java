@@ -2,8 +2,8 @@ package com.herokuapp.presale;
 
 import java.util.concurrent.ExecutionException;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
