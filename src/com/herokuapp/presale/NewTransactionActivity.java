@@ -41,5 +41,4 @@ public class NewTransactionActivity extends Activity {
 		getMenuInflater().inflate(R.menu.new_transaction, menu);
 		return true;
 	}
-
 }
