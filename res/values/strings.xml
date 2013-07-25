@@ -17,5 +17,6 @@
     <string name="title_activity_transactions">Transacciones recientes</string>
     <string name="title_activity_show_transaction">Detalle de transacción</string>
     <string name="title_activity_new_transaction">Nueva Transacción</string>
+    <string name="settings">CONFIGURACIÓN</string>
 
 </resources>
