@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions, R.id.btnSynchronize};
+		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions, R.id.btnSettings};
 		
 		for (int i = 0; i < buttons.length; i++) {
 			((Button) findViewById(buttons[i])).setOnClickListener(this);
@@ -51,11 +51,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			intent = new Intent(this, TransactionsActivity.class);
 			startActivity(intent);
 			break;
-		/*
-		case R.id.btnSynchronize:
-			Toast.makeText(this, "Implementar con webservice", Toast.LENGTH_SHORT).show();
+		case R.id.btnSettings:
+			startActivity(new Intent(MainActivity.this, OpcionesActivity.class));
 			break;
-			*/
 		}
 	}
 
