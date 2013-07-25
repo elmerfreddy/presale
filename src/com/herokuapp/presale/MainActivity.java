@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener {
-	public static final String api_host = "http://10.0.2.2:3000";
+	public static String api_host;
 	public static String authToken = null;
 		
 	@Override
@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions, R.id.btnSynchronize};
+		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions, R.id.btnSettings};
 		
 		for (int i = 0; i < buttons.length; i++) {
 			((Button) findViewById(buttons[i])).setOnClickListener(this);
@@ -35,15 +35,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		Intent intent = null;
 		switch(v.getId()) {
-		
 		case R.id.btnProducts:
-			//Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, ProductsActivity.class);
 			startActivity(intent);
 			break;
-			
 		case R.id.btnStores:
-			//Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, StoresActivity.class);
 			startActivity(intent);
 			break;
@@ -51,11 +47,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			intent = new Intent(this, TransactionsActivity.class);
 			startActivity(intent);
 			break;
-		/*
-		case R.id.btnSynchronize:
-			Toast.makeText(this, "Implementar con webservice", Toast.LENGTH_SHORT).show();
+		case R.id.btnSettings:
+			startActivity(new Intent(MainActivity.this, OpcionesActivity.class));
 			break;
-			*/
 		}
 	}
 

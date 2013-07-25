@@ -2,7 +2,9 @@ package com.herokuapp.presale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -21,6 +23,9 @@ public class TransactionsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_transactions);
+		
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(TransactionsActivity.this);
+		MainActivity.api_host = pref.getString("host", "http://10.0.2.2:3000");
 		
 		transactions = Transaction.all();
 		TransactionAdapter adapter = new TransactionAdapter(this);

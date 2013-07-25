@@ -3,7 +3,9 @@ package com.herokuapp.presale;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -19,6 +21,9 @@ public class ProductsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_products);
+		
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ProductsActivity.this);
+		MainActivity.api_host = pref.getString("host", "http://10.0.2.2:3000");
 		
 		Product.context = ProductsActivity.this;
 		//Product.testData();

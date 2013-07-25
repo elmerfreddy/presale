@@ -36,12 +36,12 @@
         android:text="@string/stores" />
 
     <Button
-        android:id="@+id/btnSynchronize"
+        android:id="@+id/btnSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/btnTransactions"
-        android:text="@string/synchronize" />
+        android:text="@string/settings" />
 
 </RelativeLayout>
