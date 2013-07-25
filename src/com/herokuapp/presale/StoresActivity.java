@@ -2,7 +2,9 @@ package com.herokuapp.presale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -20,6 +22,9 @@ public class StoresActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stores);
+		
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(StoresActivity.this);
+		MainActivity.api_host = pref.getString("host", "http://10.0.2.2:3000");
 		
 		Store.context = StoresActivity.this;
 		//Store.testData();

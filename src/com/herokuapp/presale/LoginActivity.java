@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -16,8 +15,10 @@ import org.json.JSONStringer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -30,6 +31,9 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+		MainActivity.api_host = pref.getString("host", "http://10.0.2.2:3000");
 	}
 
 	public void btnLogin(View view) {
@@ -52,7 +56,7 @@ public class LoginActivity extends Activity {
 			Log.i("PASSWORD", password);
 			HttpClient httpclient = new DefaultHttpClient();
 	        HttpResponse response;
-	        JSONObject jsonObject = null, dato = null;
+	        JSONObject jsonObject = null;
 	        String responseString = "";
 	        String url = params[0];
 	        try {
@@ -73,7 +77,6 @@ public class LoginActivity extends Activity {
 				post.setEntity(entity);
 	        		
 	            response = httpclient.execute(post);
-	            StatusLine statusLine = response.getStatusLine();
 	            ByteArrayOutputStream out = new ByteArrayOutputStream();
 	            response.getEntity().writeTo(out);
 	            out.close();
@@ -102,8 +105,6 @@ public class LoginActivity extends Activity {
 	    				String error = result.getString("error");
 	    				Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
 	    			} else {
-	    				int id = result.getInt("id");
-						String email = result.getString("email");
 			    		String auth_token = result.getString("auth_token");
 			    		MainActivity.authToken = auth_token;
 			    		

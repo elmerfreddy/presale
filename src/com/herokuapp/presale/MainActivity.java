@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener {
-	public static final String api_host = "http://10.0.2.2:3000";
+	public static String api_host;
 	public static String authToken = null;
 		
 	@Override
@@ -35,15 +35,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		Intent intent = null;
 		switch(v.getId()) {
-		
 		case R.id.btnProducts:
-			//Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, ProductsActivity.class);
 			startActivity(intent);
 			break;
-			
 		case R.id.btnStores:
-			//Toast.makeText(this, "TIENDAS", Toast.LENGTH_SHORT).show();
 			intent = new Intent(this, StoresActivity.class);
 			startActivity(intent);
 			break;
