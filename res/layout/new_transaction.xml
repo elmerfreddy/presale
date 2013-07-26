@@ -9,7 +9,7 @@
     tools:context=".NewTransactionActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtEditProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -24,7 +24,7 @@
         android:layout_above="@+id/textView2"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/txtEditProductName"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/txtEditProductName"
         android:layout_marginTop="16dp"
         android:text="Productos seleccionados:"
         android:textColor="#2fb2ec" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/txtEditProductName"
         android:layout_toRightOf="@+id/textView2"
         android:text="@string/add_product" />
 

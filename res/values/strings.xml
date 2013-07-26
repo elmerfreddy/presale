@@ -18,8 +18,9 @@
     <string name="title_activity_show_transaction">DETALLE DE TRANSACCIÓN</string>
     <string name="title_activity_new_transaction">NUEVA TRANSACCIÓN</string>
     <string name="settings">CONFIGURACIÓN</string>
-    <string name="add_product">Producto</string>
+    <string name="add_product">+ Producto</string>
     <string name="save">Guardar</string>
     <string name="title_activity_add_product">SELECCIONAR PRODUCTOS</string>
+    <string name="title_activity_edit_detail">EDITAR DETALLE</string>
 
 </resources>
