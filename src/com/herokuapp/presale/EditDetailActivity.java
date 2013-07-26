@@ -51,6 +51,18 @@ public class EditDetailActivity extends Activity {
 				finish();
 			}
 		});
+		
+		Button btnDelete = (Button) findViewById(R.id.btnEditDelete);
+		btnDelete.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.putExtra("POSITION", position);
+				intent.putExtra("DELETE_PRODUCT", "TRUE");
+				setResult(Activity.RESULT_OK, intent);
+				finish();
+			}
+		});
 	}
 
 	@Override

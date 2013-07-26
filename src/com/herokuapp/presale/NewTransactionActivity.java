@@ -93,8 +93,12 @@ public class NewTransactionActivity extends Activity {
 	    	if(resultCode == Activity.RESULT_OK) {
 	    		TextView txtProductTotal = (TextView) findViewById(R.id.txtProductTotal);
 		    	Detail d = details.get(data.getIntExtra("POSITION", 0));
-		    	d.quantity = Integer.parseInt(data.getStringExtra("PRODUCT_QUANTITY"));
-		    	d.total = d.getTotal();
+		    	if(data.hasExtra("DELETE_PRODUCT")) {
+		    		details.remove(d);
+		    	} else {
+			    	d.quantity = Integer.parseInt(data.getStringExtra("PRODUCT_QUANTITY"));
+			    	d.total = d.getTotal();
+		    	}
 		    	txtProductTotal.setText("" + getDetailsTotal());
 		    	adapter.notifyDataSetChanged();
 	    	}

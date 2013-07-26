@@ -61,15 +61,6 @@
     </EditText>
 
     <Button
-        android:id="@+id/btnEditSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtEditProductQuantity"
-        android:layout_marginTop="26dp"
-        android:layout_toRightOf="@+id/textView2"
-        android:text="GUARDAR" />
-
-    <Button
         android:id="@+id/btnEditCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,5 +68,23 @@
         android:layout_alignBottom="@+id/btnEditSave"
         android:layout_toRightOf="@+id/btnEditSave"
         android:text="CANCELAR" />
+
+    <Button
+        android:id="@+id/btnEditSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtEditProductQuantity"
+        android:layout_marginTop="16dp"
+        android:text="GUARDAR" />
+
+    <Button
+        android:id="@+id/btnEditDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnEditCancel"
+        android:layout_alignBottom="@+id/btnEditCancel"
+        android:layout_toRightOf="@+id/btnEditCancel"
+        android:text="X" />
 
 </RelativeLayout>
