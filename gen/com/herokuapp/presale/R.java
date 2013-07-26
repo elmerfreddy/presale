@@ -26,8 +26,8 @@ public final class R {
     public static final class id {
         public static final int AbsoluteLayout1=0x7f090011;
         public static final int RelativeLayout1=0x7f09001b;
-        public static final int TextView01=0x7f090024;
-        public static final int action_settings=0x7f090026;
+        public static final int TextView01=0x7f090025;
+        public static final int action_settings=0x7f090027;
         public static final int btnAddProduct=0x7f090022;
         public static final int btnEditCancel=0x7f090010;
         public static final int btnEditSave=0x7f09000f;
@@ -40,7 +40,7 @@ public final class R {
         public static final int lstProducts=0x7f090007;
         public static final int lstSelectProduct=0x7f090009;
         public static final int lstSelectedProducts=0x7f090020;
-        public static final int lstShowProducts=0x7f090025;
+        public static final int lstShowProducts=0x7f090026;
         public static final int lstTransactions=0x7f090008;
         public static final int textView1=0x7f09000d;
         public static final int textView2=0x7f09000b;
@@ -58,8 +58,9 @@ public final class R {
         public static final int txtNewTStore=0x7f09001f;
         public static final int txtPassword=0x7f090001;
         public static final int txtPrice=0x7f090019;
+        public static final int txtProductTotal=0x7f090023;
         public static final int txtProductsCount=0x7f09001d;
-        public static final int txtShowStoreName=0x7f090023;
+        public static final int txtShowStoreName=0x7f090024;
         public static final int txtStoreName=0x7f09001c;
         public static final int txtTransactionTotal=0x7f090016;
         public static final int txtUserName=0x7f09001e;
