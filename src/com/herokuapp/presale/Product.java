@@ -29,11 +29,17 @@ public class Product {
 		this.price = (float) (Math.random()*200 + 50);
 	}
 	
-	public static Product find(int product_id) {
-		Product product = new Product();
-		product.id = product_id;
-		product.name = "Product " + product_id;
-		product.price = (float) (Math.random()*200 + 50);
+	public static Product find(int _id) {
+		Product product =  null;
+		RequestProduct requestTransaction = new RequestProduct();
+		requestTransaction.execute(MainActivity.api_host + "/products/" + _id + "?auth_token=" + MainActivity.authToken);
+		try {
+			product = parseProduct(requestTransaction.get());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		return product;
 	}
 	
@@ -50,15 +56,17 @@ public class Product {
 		return alProducts.toArray(new Product[alProducts.size()]);
 	}
 	
-	public static void testData() {
-		Products products = new Products(context);
+	private static Product parseProduct(JSONObject product) {
+		JSONObject o = product;
+		Product p = new Product();
 		try {
-			products.open();
-			products.insertTestData();
-			products.close();
-		} catch(Exception e) {
+			p.id = o.getInt("id");
+			p.price = (float) o.getDouble("price");
+			p.name = o.getString("name");
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		return p;
 	}
 	
 	private static ArrayList<Product> parseProducts(JSONArray products) {
