@@ -15,7 +15,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtEditProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -26,10 +26,10 @@
         android:id="@+id/txtProductsCount"
         android:layout_width="151dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/txtEditProductName"
+        android:layout_alignBottom="@+id/txtEditProductName"
         android:layout_toLeftOf="@+id/txtUserName"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/txtEditProductName"
         android:text="TextView"
         android:textColor="#969696" />
 

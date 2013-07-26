@@ -9,7 +9,7 @@
     tools:context=".NewTransactionActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtEditProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -21,11 +21,10 @@
         android:id="@+id/txtNewTStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_above="@+id/textView2"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/txtEditProductName"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -34,10 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/txtEditProductName"
         android:layout_marginTop="16dp"
-        android:text="Productos seleccionados:" />
+        android:text="Productos seleccionados:"
+        android:textColor="#2fb2ec" />
 
     <ListView
         android:id="@+id/lstSelectedProducts"
@@ -50,11 +49,43 @@
     </ListView>
 
     <Button
+        android:id="@+id/btnAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtEditProductName"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="@string/add_product" />
+
+    <Button
         android:id="@+id/btnSaveTransaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Guardar transacción" />
+        android:layout_alignParentLeft="true"
+        android:text="@string/save" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSaveTransaction"
+        android:layout_alignBottom="@+id/btnSaveTransaction"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="Total "
+        android:textColor="#2fb2ec" />
+
+    <TextView
+        android:id="@+id/txtProductTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="0.0"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

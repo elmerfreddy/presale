@@ -48,9 +48,18 @@
             android:name="com.herokuapp.presale.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction" >
         </activity>
-        <activity android:name=".OpcionesActivity"
-    		android:label="@string/app_name">
-		</activity>
+        <activity
+            android:name="com.herokuapp.presale.OpcionesActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.herokuapp.presale.AddProductActivity"
+            android:label="@string/title_activity_add_product" >
+        </activity>
+        <activity
+            android:name="com.herokuapp.presale.EditDetailActivity"
+            android:label="@string/title_activity_edit_detail" >
+        </activity>
     </application>
 
 </manifest>
