@@ -5,18 +5,21 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class NewTransactionActivity extends Activity {
-	private ArrayList<Product> products = new ArrayList<Product>();
+	private ArrayList<Detail> details = new ArrayList<Detail>();
 	private int store_id = 0;
 	private ProductAdapter adapter;
 
@@ -36,6 +39,23 @@ public class NewTransactionActivity extends Activity {
 		adapter = new ProductAdapter(NewTransactionActivity.this);
 		ListView lstProducts = (ListView) findViewById(R.id.lstSelectedProducts);
 		lstProducts.setAdapter(adapter);
+		
+		lstProducts.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
+				Detail detail = (Detail) a.getAdapter().getItem(position);
+				Intent intent = new Intent(NewTransactionActivity.this, EditDetailActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("PRODUCT_NAME", detail.product_name);
+				bundle.putString("PRODUCT_PRICE", "" + detail.price);
+				bundle.putString("PRODUCT_QUANTITY", "" + detail.quantity);
+				bundle.putInt("POSITION", position);
+				intent.putExtras(bundle);
+				startActivityForResult(intent, 2);
+			}
+		});
 		
 		Button btnSaveTransaction = (Button) findViewById(R.id.btnSaveTransaction);
 		btnSaveTransaction.setOnClickListener(new OnClickListener() {
@@ -61,14 +81,24 @@ public class NewTransactionActivity extends Activity {
 	  switch(requestCode) { 
 	    case (1) : { 
 	      if (resultCode == Activity.RESULT_OK) {
-	    	  Product p = new Product();
-	    	  p.id = data.getIntExtra("SELECTED_PRODUCT_ID", 0);
-	    	  p.name = data.getStringExtra("SELECTED_PRODUCT_NAME");
-	    	  p.price = data.getFloatExtra("SELECTED_PRODUCT_PRICE", 0);
-	    	  adapter.add(p);
+	    	  Detail d = new Detail();
+	    	  d.product_id = data.getIntExtra("SELECTED_PRODUCT_ID", 0);
+	    	  d.product_name = data.getStringExtra("SELECTED_PRODUCT_NAME");
+	    	  d.price = data.getFloatExtra("SELECTED_PRODUCT_PRICE", 0);
+	    	  d.total = d.getTotal();
+	    	  adapter.add(d);
 	      } 
 	      break; 
-	    } 
+	    }
+	    case (2) : {
+	    	if(resultCode == Activity.RESULT_OK) {
+		    	Detail d = details.get(data.getIntExtra("POSITION", 0));
+		    	d.quantity = Integer.parseInt(data.getStringExtra("PRODUCT_QUANTITY"));
+		    	d.total = d.getTotal();
+		    	adapter.notifyDataSetChanged();
+	    	}
+	    	break;
+	    }
 	  } 
 	}
 
@@ -79,23 +109,30 @@ public class NewTransactionActivity extends Activity {
 		return true;
 	}
 	
-	public class ProductAdapter extends ArrayAdapter<Product> {
+	public class ProductAdapter extends ArrayAdapter<Detail> {
 		private Activity context;
 		 
 	    public ProductAdapter(Activity context) {
-	        super(context, R.layout.listitem_product, products);
+	        super(context, R.layout.listitem_detail, details);
 	        this.context = context;
 	    }
 
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	    	LayoutInflater inflater = context.getLayoutInflater();
-	    	View item = inflater.inflate(R.layout.listitem_product, null);
+	    	View item = inflater.inflate(R.layout.listitem_detail, null);
 
-	    	TextView txtName = (TextView)item.findViewById(R.id.txtName);
-	    	txtName.setText(products.get(position).name);
+	    	TextView txtDetailProductName = (TextView) item.findViewById(R.id.txtDetailProductName);
+	    	txtDetailProductName.setText(details.get(position).product_name);
 
-	    	TextView txtPrice = (TextView)item.findViewById(R.id.txtPrice);
-	    	txtPrice.setText("" + products.get(position).price);
+	    	TextView txtDetailQuantity= (TextView) item.findViewById(R.id.txtDetailQuantity);
+	    	txtDetailQuantity.setText("" + details.get(position).quantity);
+	    	
+	    	TextView txtDetailPrice = (TextView) item.findViewById(R.id.txtDetailPrice);
+	    	txtDetailPrice.setText("" + details.get(position).price);
+	    	
+	    	TextView txtDetailSubtotal = (TextView) item.findViewById(R.id.txtDetailSubtotal);
+	    	txtDetailSubtotal.setText("" + details.get(position).total);
+
 
 	    	return(item);
 	    }
