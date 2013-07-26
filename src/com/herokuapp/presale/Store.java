@@ -71,8 +71,10 @@ public class Store {
 				s.name = o.getString("name");
 				s.owner = o.getString("owner");
 				s.address = o.getString("address");
-				s.latitude = o.getDouble("latitude");
-				s.longitude = o.getDouble("longitude");
+				if(o.has("latitude") && !o.isNull("latitude"))
+					s.latitude =  o.getDouble("latitude");
+				if(o.has("longitude") && !o.isNull("longitude"))
+					s.longitude = o.getDouble("longitude");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
