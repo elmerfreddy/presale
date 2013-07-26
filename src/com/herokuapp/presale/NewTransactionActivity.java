@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -92,9 +91,11 @@ public class NewTransactionActivity extends Activity {
 	    }
 	    case (2) : {
 	    	if(resultCode == Activity.RESULT_OK) {
+	    		TextView txtProductTotal = (TextView) findViewById(R.id.txtProductTotal);
 		    	Detail d = details.get(data.getIntExtra("POSITION", 0));
 		    	d.quantity = Integer.parseInt(data.getStringExtra("PRODUCT_QUANTITY"));
 		    	d.total = d.getTotal();
+		    	txtProductTotal.setText("" + getDetailsTotal());
 		    	adapter.notifyDataSetChanged();
 	    	}
 	    	break;
@@ -136,5 +137,13 @@ public class NewTransactionActivity extends Activity {
 
 	    	return(item);
 	    }
+	}
+	
+	private float getDetailsTotal() {
+		float t = 0;
+		for (Detail d: details) {
+			t = t + d.getTotal();
+		}
+		return t;
 	}
 }
