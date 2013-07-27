@@ -67,7 +67,7 @@
         android:text="@string/save" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtShowDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnSaveTransaction"
@@ -80,11 +80,11 @@
         android:id="@+id/txtProductTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/txtShowDate"
+        android:layout_alignBottom="@+id/txtShowDate"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/txtShowDate"
         android:text="0.0"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

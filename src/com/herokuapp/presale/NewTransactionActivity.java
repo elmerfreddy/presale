@@ -1,10 +1,24 @@
 package com.herokuapp.presale;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -16,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewTransactionActivity extends Activity {
 	private ArrayList<Detail> details = new ArrayList<Detail>();
@@ -60,6 +75,9 @@ public class NewTransactionActivity extends Activity {
 		btnSaveTransaction.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				SaveDetail requestDetail = new SaveDetail();
+				requestDetail.execute(MainActivity.api_host + "/transactions?auth_token=" + MainActivity.authToken);
+				Toast.makeText(NewTransactionActivity.this, "Guardando transacción...", Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		});
@@ -149,5 +167,85 @@ public class NewTransactionActivity extends Activity {
 			t = t + d.getTotal();
 		}
 		return t;
+	}
+	
+	
+	class SaveDetail extends AsyncTask<String, String, JSONObject> {
+		@Override
+		protected JSONObject doInBackground(String... params) {
+			HttpClient httpclient = new DefaultHttpClient();
+	        HttpResponse response;
+	        JSONObject jsonObject = null;
+	        String responseString = "";
+	        String url = params[0];
+	        try {
+	        	HttpPost post = new HttpPost(url);
+	        	post.setHeader("accept", "application/json");
+	        	post.setHeader("content-type", "application/json");
+	        	
+				JSONObject transaction = parseToJSON();
+				Log.i("TRANSACTION", transaction.toString());
+				
+				StringEntity entity = new StringEntity(transaction.toString());
+				post.setEntity(entity);
+	        		
+	            response = httpclient.execute(post);
+	            ByteArrayOutputStream out = new ByteArrayOutputStream();
+	            response.getEntity().writeTo(out);
+	            out.close();
+	            responseString = out.toString();
+	            
+	        } catch (ClientProtocolException e) {
+	        	e.getStackTrace();
+	        } catch (IOException e) {
+	        	e.getStackTrace();
+			}
+			try {
+				jsonObject = new JSONObject(responseString);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+	        
+	        return jsonObject;
+	    }
+	
+	    @Override
+	    protected void onPostExecute(JSONObject result) {
+	    	if(result != null) {
+	    		try {
+	    			if(result.has("error")) {
+	    				String error = result.getString("error");
+	    				Toast.makeText(NewTransactionActivity.this, error, Toast.LENGTH_LONG).show();
+	    			} else {
+	    				Toast.makeText(NewTransactionActivity.this, "Transacción Guardada... " + result.getInt("id"), Toast.LENGTH_LONG).show();
+	    				Log.i("TRANSACTION CREATED", result.toString());
+	    			}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+	    	}
+	    }
+	    
+	    private JSONObject parseToJSON() {
+	    	JSONObject trans = null, o = null, store = null;
+			try {
+				trans = new JSONObject();
+				store = new JSONObject();
+				store.put("store_id", store_id);
+				JSONArray dets = new JSONArray();
+				for(Detail d: details) {
+					o = new JSONObject();
+					o.put("product_id", d.product_id);
+					o.put("price", d.price);
+					o.put("quantity", d.quantity);
+					dets.put(o);
+				}
+				store.put("details_attributes", dets);
+				trans.put("transaction", store);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+	    	return trans;
+	    }
 	}
 }
