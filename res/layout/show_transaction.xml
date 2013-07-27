@@ -86,8 +86,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/txtShowStoreName"
         android:text="TextView"
-        android:textColor="#929292"
-        android:textStyle="bold" />
+        android:textColor="#929292" />
 
     <Button
         android:id="@+id/btnDeleteTransaction"

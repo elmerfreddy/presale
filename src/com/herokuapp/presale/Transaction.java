@@ -15,6 +15,7 @@ public class Transaction {
 	public String user_name = null;
     public float total = (float) 0.0;
     public Detail[] details = null;
+    public String date = null;
 
 	public Transaction() {
 	}
@@ -58,6 +59,7 @@ public class Transaction {
 			s.products_count = o.getInt("products_count");
 			s.user_name = o.getString("user_name");
 			s.total = (float) o.getDouble("total");
+			s.date = o.getString("date");
 			s.details = new Detail[s.products_count];
 			jsonArray = o.getJSONArray("details");
 			for (int j = 0; j < jsonArray.length(); j++) {
@@ -90,6 +92,7 @@ public class Transaction {
 				s.products_count = o.getInt("products_count");
 				s.user_name = o.getString("user_name");
 				s.total = (float) o.getDouble("total");
+				s.date = o.getString("date");
 				s.details = new Detail[s.products_count];
 				jsonArray = o.getJSONArray("details");
 				for (int j = 0; j < jsonArray.length(); j++) {

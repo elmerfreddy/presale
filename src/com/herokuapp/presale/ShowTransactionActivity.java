@@ -39,6 +39,8 @@ public class ShowTransactionActivity extends Activity {
 		details = transaction.details;
 		
 		((TextView) findViewById(R.id.txtShowStoreName)).setText(transaction.store_name);
+		((TextView) findViewById(R.id.txtShowDate)).setText(transaction.date);
+		((TextView) findViewById(R.id.txtShowUser)).setText(transaction.user_name);
 		((TextView) findViewById(R.id.txtTransactionTotal)).setText("" + transaction.total);
 		ListView lstShowProducts = (ListView) findViewById(R.id.lstShowProducts);
 		DetailAdapter detailAdapter = new DetailAdapter(this);
