@@ -33,12 +33,12 @@ public final class R {
         public static final int btnEditCancel=0x7f09000f;
         public static final int btnEditDelete=0x7f090011;
         public static final int btnEditSave=0x7f090010;
+        public static final int btnHostConfig=0x7f090003;
         public static final int btnLogin=0x7f090002;
-        public static final int btnProducts=0x7f090003;
+        public static final int btnProducts=0x7f090004;
         public static final int btnSaveTransaction=0x7f090022;
-        public static final int btnSettings=0x7f090006;
-        public static final int btnStores=0x7f090005;
-        public static final int btnTransactions=0x7f090004;
+        public static final int btnStores=0x7f090006;
+        public static final int btnTransactions=0x7f090005;
         public static final int lstProducts=0x7f090007;
         public static final int lstSelectProduct=0x7f090009;
         public static final int lstSelectedProducts=0x7f090021;

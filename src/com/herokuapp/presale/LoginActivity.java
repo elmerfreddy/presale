@@ -22,6 +22,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,6 +36,15 @@ public class LoginActivity extends Activity {
 		
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
 		MainActivity.api_host = pref.getString("host", "http://10.0.2.2:3000");
+		
+		Button btnHost = (Button) findViewById(R.id.btnHostConfig);
+		btnHost.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(LoginActivity.this, OpcionesActivity.class));				
+			}
+		});
 	}
 
 	public void btnLogin(View view) {
