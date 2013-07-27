@@ -41,6 +41,7 @@ public class TransactionsActivity extends Activity {
 				bundle.putInt("ID", transaction.id);
 				Intent intent = new Intent(TransactionsActivity.this, ShowTransactionActivity.class);
 				intent.putExtras(bundle);
+				finish();
 				startActivity(intent);
 			}
 		});
