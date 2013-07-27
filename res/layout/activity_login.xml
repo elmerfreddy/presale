@@ -41,4 +41,13 @@
         android:onClick="btnLogin"
         android:text="@string/login" />
 
+    <Button
+        android:id="@+id/btnHostConfig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Webservice" />
+
 </RelativeLayout>

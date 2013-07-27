@@ -35,13 +35,4 @@
         android:layout_below="@+id/btnProducts"
         android:text="@string/stores" />
 
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/settings" />
-
 </RelativeLayout>
