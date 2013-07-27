@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions, R.id.btnSettings};
+		int[] buttons = {R.id.btnProducts, R.id.btnStores, R.id.btnTransactions};
 		
 		for (int i = 0; i < buttons.length; i++) {
 			((Button) findViewById(buttons[i])).setOnClickListener(this);
@@ -46,9 +46,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btnTransactions:
 			intent = new Intent(this, TransactionsActivity.class);
 			startActivity(intent);
-			break;
-		case R.id.btnSettings:
-			startActivity(new Intent(MainActivity.this, OpcionesActivity.class));
 			break;
 		}
 	}
