@@ -39,7 +39,7 @@
         android:textColor="#929292" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtShowDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -51,8 +51,8 @@
         android:id="@+id/txtEditProductQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/txtShowDate"
+        android:layout_alignBottom="@+id/txtShowDate"
         android:layout_alignParentRight="true"
         android:ems="10"
         android:inputType="number" >
